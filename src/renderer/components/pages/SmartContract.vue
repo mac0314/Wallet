@@ -25,42 +25,12 @@
 <script>
   export default {
     name: 'smart-contract',
-    components: { 
+    components: {
 
     },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
-      },
-      test () {
-        console.log("test")
-
-        var role = "admin";
-        var code = 'res, ok = call("testPermission", "' + role + '"); assert(ok); return res;'; 
-
-        var CoinStack = require('coinstack-sdk-js');
-        var client = new CoinStack('', '', '172.16.101.132:3000', 'http'); 
-        var address = "1QBSiKdw52XDDDM17fp4bohcM3NcH8Bne1";
-        var privatekey = "Ky177r3bogwAxhbyVrBKK44gHxKBFtCsRFN7A3ZqHhWkm6GitYWW";
-
-        client.queryContract(address, "LSC", code, function (err, res) {
-          console.log(err);
-          console.log(res);
-        });
-      },
-      test2 () {
-        console.log("Good")
-
-        const baseURI = "http://172.16.101.132:3000"
-        this.$http.get(
-          `${baseURI}/blockchain`
-        )
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
       }
     }
   }

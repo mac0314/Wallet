@@ -4,11 +4,11 @@
       <div class="left-side">
         <span class="title">
           계정 요약
+          {{currentHeight}}
         </span>
         <div class="doc">
           <button class="alt" v-on:click="test">계정 추가</button>
         </div>
-        
       </div>
 
       <div class="right-side">
@@ -33,30 +33,28 @@
     components: { 
 
     },
+    data () {
+      return {
+        currentHeight: -1
+      }
+    },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
       },
-      test () {
-        console.log("test")
+      async test () {
+        const blockchain = await this.$aergo.blockchain();
 
-        var role = "admin";
-        var code = 'res, ok = call("testPermission", "' + role + '"); assert(ok); return res;'; 
-
-        var CoinStack = require('coinstack-sdk-js');
-        var client = new CoinStack('', '', '172.16.101.132:3000', 'http'); 
-        var address = "1QBSiKdw52XDDDM17fp4bohcM3NcH8Bne1";
-        var privatekey = "Ky177r3bogwAxhbyVrBKK44gHxKBFtCsRFN7A3ZqHhWkm6GitYWW";
-
-        client.queryContract(address, "LSC", code, function (err, res) {
-          console.log(err);
-          console.log(res);
-        });
+        console.log(blockchain.bestHeight, blockchain.bestBlockHash);
+        
+        this.currentHeight = blockchain.bestHeight;
+        
+        // 3924
       },
       test2 () {
         console.log("Good")
 
-        const baseURI = "http://172.16.101.132:3000"
+        const baseURI = "http://192.168.1.107:3000"
         this.$http.get(
           `${baseURI}/blockchain`
         )

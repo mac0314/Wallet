@@ -1,12 +1,12 @@
 <template>
   <div class="footer">
-    <div class="fot1">
+    <div class="upper-footer">
       <div class="doc">
         <button class="alt" @click="open('https://coinstack.zendesk.com/hc/ko/articles/206641937')">서비스 이용 약관</button>
         <button class="alt" @click="open('https://coinstack.zendesk.com/hc/ko/articles/205903508')">개인정보 취급 방침</button>
       </div>
     </div>
-    <div class="fot2">
+    <div class="lower-footer">
       ⓒ 2018 BLOCKO,    Inc. All rights reserved.
     </div>
   </div>
@@ -46,10 +46,10 @@ export default {
   margin-top: 10%;
 }
 
-.fot2{
+.lower-footer{
   color: #c3c3c3;
   font-weight: bold;
   font-size: 12px;
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 </style>
